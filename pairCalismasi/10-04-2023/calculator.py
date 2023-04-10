@@ -17,6 +17,8 @@ def bolme(a, b):
 
 
 def mod(a, b):
+    if (b == 0):
+        return "Bölen sıfır olmamalıdır!!"
     return a % b
 
 
