@@ -1,18 +1,17 @@
-import students
-import teachers
+from students import Student
+from teachers import Teachers
 
-studentsList = students.Student.myStudentlist
-teachersList = teachers.Teachers.myTeachersList
-allList = [studentsList, teachersList]
-
-# def addStudent():
-#     studentInput = str(input("Öğrenci ismini giriniz : "))
-#     studentsList.append(studentInput)
+studentsList = []
+teachersList = []
+allList = []
 
 
-# def addTeacher():
-#     teacherInput = str(input("Öğretmen ismini giriniz : "))
-#     teachersList.append(teacherInput)
+def addStudent(studentInput):
+    studentsList.append(studentInput)
+
+
+def addTeacher(teacherInput):
+    teachersList.append(teacherInput)
 
 
 while True:
@@ -28,11 +27,13 @@ while True:
             input("Eklemek istediğiniz kişinin mesleği nedir ? (Öğrenci/Öğretmen) : "))
         userInput.lower()
         if (userInput == "öğrenci"):
-            newStudent = students.Student()
-            newStudent.addStudent(str(input("Öğrenci ismini giriniz : ")))
+            studentInput = str(input("Öğrenci ismini giriniz : "))
+            studentNew = Student(studentInput)
+            addStudent(studentNew)
         elif (userInput == "öğretmen"):
-            newTeacher = teachers.Teachers()
-            newTeacher.addTeacher(str(input("Öğretmen ismini giriniz : ")))
+            teacherInput = str(input("Öğretmen ismini giriniz : "))
+            teacherNew = Teachers(teacherInput)
+            addTeacher(teacherNew)
         else:
             print("Lütfen belirtilen mesleklerden birini giriniz!")
     elif (userChoice == "listele"):
@@ -40,11 +41,17 @@ while True:
             input("Hangi listeyi görmek istiyorsunuz ? Örn: Öğrenciler/Öğretmenler/Hepsi : "))
         selectList.lower()
         if (selectList == "öğrenciler"):
-            print(
-                f"Öğrenci listesi gösteriliyor : \n{studentsList}")
+            print("Öğrenci Listesi gösteriliyor :")
+            for i, studentsList in enumerate(studentsList, start=1):
+                print(f"{i}-) {studentsList.name}")
         elif (selectList == "öğretmenler"):
-            print(f"Öğretmen listesi gösteriliyor : \n{teachersList}")
+            print("Öğretmen Listesi gösteriliyor :")
+            for i, teachersList in enumerate(teachersList, start=1):
+                print(f"{i}-) {teachersList.name}")
         elif (selectList == "hepsi"):
-            print(f"Hepsi gösteriliyor : \n{allList}")
+            allList = [*studentsList, *teachersList]
+            print(f"Tüm listeler gösteriliyor : ")
+            for i, allList in enumerate(allList, start=1):
+                print(f"{i}-) {allList}")
         else:
             print("Lütfen geçerli seçeneği giriniz.")

@@ -1,16 +1,13 @@
 class Student:
     name = ""
     occupasion = ""
-    myStudentlist = []
 
-    def __init__(self):
-        pass
+    def __init__(self, name, occupasion="student"):
+        self.name = name
+        self.occupasion = occupasion
 
     def __str__(self) -> str:
-        return self.name
-
-    def addStudent(self, studentInput):
-        self.myStudentlist.append(studentInput)
+        return f"{self.occupasion} -> {self.name}"
 
     def talks(self):
         print(f"{self.name} is talking")
